@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS ft_tbl_data
 	aggregate_id text,
 	timestamp timestamp,
 	id_cat integer,
-	category text
+	category integer
 );
 
 
