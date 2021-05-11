@@ -85,4 +85,10 @@ with DAG(**dag_params, template_searchpath=[cfg.dir_dag_template]) as dag:
         postgres_conn_id="connections"
     )
 
-    create_extension_task >> create_target_table >> insert_target_table >> insert_target_dm_yy_mm_dd >> [insert_target_dm_action_type,insert_target_dm_dob,insert_target_dm_product] >> insert_target_dm_users >> insert_target_ft_tbl
+    insert_target_ft_order_fulfilled_cancelled = PostgresOperator(
+        task_id='insert_target_ft_order_fulfilled_cancelled',
+        sql="insert_target_ft_order_fulfilled_cancelled.sql",
+        postgres_conn_id="connections"
+    )
+
+    create_extension_task >> create_target_table >> insert_target_table >> insert_target_dm_yy_mm_dd >> [insert_target_dm_action_type,insert_target_dm_dob,insert_target_dm_product,insert_target_ft_order_fulfilled_cancelled] >> insert_target_dm_users >> insert_target_ft_tbl

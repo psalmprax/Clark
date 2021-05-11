@@ -21,6 +21,15 @@ CREATE TABLE IF NOT EXISTS ft_tbl_data
 );
 
 
+CREATE TABLE IF NOT EXISTS order_fulfilled_stat
+(
+  	aggregate_id text,
+	order_accepted timestamp,
+   	order_fulfilled_OR_cancelled timestamp,
+	difference_in_min DOUBLE PRECISION,
+	order_fulfilled_status text
+);
+
 
 CREATE TABLE IF NOT EXISTS dm_dob_year
 (
